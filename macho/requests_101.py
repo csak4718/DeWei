@@ -5,5 +5,9 @@ from bs4 import BeautifulSoup
 
 theurl='http://www.gap.com' 
 r = requests.get(theurl)
-print r.text
+#print r.text
 soup = BeautifulSoup(r.text)
+divs=soup.find_all('div')
+for div in divs:
+	print div
+
