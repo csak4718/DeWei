@@ -113,7 +113,7 @@ if __name__ == '__main__':
 	csv_file_name=os.path.join(os.getcwd(),'tweet_sample_popular.csv')
 	with open(csv_file_name,'wb') as csvfile:
 		csv_writer = csv.writer(csvfile, delimiter=',')
-		csv_writer.writerow(['screen_name','id','text','user_location','user_description','user_url','created_at','user_id','followers_count','friends_count','listed_count','favourites_count','retweet_count','favorite_count','user_lang'])
+		csv_writer.writerow(['screen_name','id','text','user_location','user_description','user_url','created_at','user_id','followers_count','friends_count','listed_count','favourites_count','retweet_count','favorite_count','user_lang']) # write keys
 		for tweet in tweet_list:
-			#print tweet
-			csv_writer.writerow([tweet['screen_name'],tweet['id'],tweet['text'],tweet['user_location'],tweet['user_description'],tweet['user_url'],tweet['created_at'],tweet['user_id'],tweet['followers_count'],tweet['friends_count'],tweet['listed_count'],tweet['favourites_count'],tweet['retweet_count'],tweet['favorite_count'],tweet['user_lang']])
+			print tweet # print every dictionary
+			csv_writer.writerow([tweet['screen_name'],tweet['id'],tweet['text'],tweet['user_location'],tweet['user_description'],tweet['user_url'],tweet['created_at'],tweet['user_id'],tweet['followers_count'],tweet['friends_count'],tweet['listed_count'],tweet['favourites_count'],tweet['retweet_count'],tweet['favorite_count'],tweet['user_lang']]) # write values

@@ -1,6 +1,6 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
-from tweepy import Stream
+from tweepy import Stream # Why tweepy? Why not tweepy.streaming, like line 1.
 
 # Go to http://dev.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
@@ -24,11 +24,11 @@ This is a basic listener that just prints received tweets to stdout.
     def on_error(self, status):
         print status
 
-if __name__ == '__main__':
+if __name__ == '__main__': # if this .py is executed, it will execute this block.
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
 
     stream = Stream(auth, l)
     stream.filter(track=['baseball'])
-    # test
+    
