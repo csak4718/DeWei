@@ -29,14 +29,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = ( 
+    # INSTALLED_APPS holds the names of all Django applications that are activated in this Django instance.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dwkung'
+    'dwkung',
+    'polls', # Now Django knows to include the polls app.
 )
 
 MIDDLEWARE_CLASSES = (
