@@ -1,6 +1,6 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
-from tweepy import Stream # Why tweepy? Why not tweepy.streaming, like line 1.
+from tweepy.streaming import Stream # Both tweepy AND tweepy.streaming are OK.
 
 # Go to http://dev.twitter.com and create an app.
 # The consumer key and secret will be generated for you after
