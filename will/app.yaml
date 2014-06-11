@@ -1,0 +1,16 @@
+# app.yaml
+application: willapp4718
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /unit2/rot13
+  script: rot13.application
+- url: /unit2/signup
+  script: signup.application
+- url: /unit2/welcome
+  script: signup.application
+- url: /.*
+  script: helloudacity.application
