@@ -10,7 +10,10 @@ class Poll(models.Model):
     	return self.question
     
     def was_published_recently(self):
-    	return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()# timezone.now() returns UTC time
+        #print "now the time is: "
+        #print now
+        return now - datetime.timedelta(days=1) <= self.pub_date < now
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
