@@ -13,7 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = os.path.join(BASE_DIR, 'templates')
 #print "temp directory is"
-#print TEMPLATE_DIRS
+#print TEMPLATE_DIRS #/home/kevin/Documents/project.git/macho/myproject/templates
 
 
 # Quick-start development settings - unsuitable for production
@@ -73,7 +73,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 

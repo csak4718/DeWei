@@ -10,7 +10,7 @@ class Poll(models.Model):
     	return self.question
     
     def was_published_recently(self):
-        now = timezone.now()# timezone.now() returns UTC time
+        now = timezone.now()# timezone.now() returns Taipei time
         #print "now the time is: "
         #print now
         return now - datetime.timedelta(days=1) <= self.pub_date < now
