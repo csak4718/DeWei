@@ -35,7 +35,7 @@ def twitterreq(url, method, parameters):
   print url
   req = oauth.Request.from_consumer_and_token(oauth_consumer,
                                              token=oauth_token,
-                                             http_method=http_method,
+                                             http_method=method,
                                              http_url=url, 
                                              parameters=parameters)
 
@@ -47,13 +47,14 @@ def twitterreq(url, method, parameters):
     encoded_post_data = req.to_postdata()
   else:
     encoded_post_data = None
-    url = req.to_url()
+    url = req.to_url()# ??? line 413 at __init__.py
+    #print url # the result is not the same as line 35
 
   opener = urllib.OpenerDirector()
   opener.add_handler(http_handler)
   opener.add_handler(https_handler)
 
-  response = opener.open(url, encoded_post_data)
+  response = opener.open(url, encoded_post_data) # No problem. why not opener.urlopen()
 
   return response
 
@@ -65,7 +66,8 @@ def fetchsamples(key_word,until_date):
 	max_id_par="max_id=%(max_id)s"%{'max_id':max_id}
 	# result_type => mixed, recent, popular 
 	result_type='mixed'
-	result_type_par="result_type=%(result_type)s"%{'result_type':result_type}
+	result_type_par="result_type=%(result_type)s"%{'result_type':result_type}# catch the value(mixed) of key 'result_type'
+	#print result_type_par # result_type=mixed
 	count=100
 	count_par="count=%(count)s"%{'count':count}
 	until_par="until=%(until)s"%{'until':until_date}
@@ -75,7 +77,7 @@ def fetchsamples(key_word,until_date):
 	parameters="q=%(key_word)s&%(result_type_par)s&%(count_par)s&%(lang_par)s"%{'key_word':key_word,'result_type_par':result_type_par,'count_par':count_par,'until_par':until_par,'lang_par':lang_par}
 	url = "https://api.twitter.com/1.1/search/tweets.json?%(parameters)s"%{'parameters':parameters}
 	parameters = []
-	response = twitterreq(url, "GET", parameters)
+	response = twitterreq(url, http_method, parameters)
 	#print response.read()
 	retrieved_tweet_list=[]
 	for result in response:
@@ -105,7 +107,7 @@ def fetchsamples(key_word,until_date):
 		print line
 		print line.strip()
 	'''
-	return retrieved_tweet_list
+	return retrieved_tweet_list # many {} in this []
 if __name__ == '__main__':
 	key_word='basketball'
 	until_date='2014-05-04'
@@ -113,7 +115,7 @@ if __name__ == '__main__':
 	csv_file_name=os.path.join(os.getcwd(),'tweet_sample_popular.csv')
 	with open(csv_file_name,'wb') as csvfile:
 		csv_writer = csv.writer(csvfile, delimiter=',')
-		csv_writer.writerow(['screen_name','id','text','user_location','user_description','user_url','created_at','user_id','followers_count','friends_count','listed_count','favourites_count','retweet_count','favorite_count','user_lang'])
+		csv_writer.writerow(['screen_name','id','text','user_location','user_description','user_url','created_at','user_id','followers_count','friends_count','listed_count','favourites_count','retweet_count','favorite_count','user_lang']) # write keys
 		for tweet in tweet_list:
-			#print tweet
-			csv_writer.writerow([tweet['screen_name'],tweet['id'],tweet['text'],tweet['user_location'],tweet['user_description'],tweet['user_url'],tweet['created_at'],tweet['user_id'],tweet['followers_count'],tweet['friends_count'],tweet['listed_count'],tweet['favourites_count'],tweet['retweet_count'],tweet['favorite_count'],tweet['user_lang']])
+			print tweet # print every dictionary
+			csv_writer.writerow([tweet['screen_name'],tweet['id'],tweet['text'],tweet['user_location'],tweet['user_description'],tweet['user_url'],tweet['created_at'],tweet['user_id'],tweet['followers_count'],tweet['friends_count'],tweet['listed_count'],tweet['favourites_count'],tweet['retweet_count'],tweet['favorite_count'],tweet['user_lang']]) # write values
